@@ -41,7 +41,7 @@ jobs:
       env:
         TEST_BROWSERS: ChromeHeadless
       run: npm run all
-    steps:
+    - name: 
       - uses: actions/checkout@main
       - uses: codecov/codecov-action@v2
         with:
