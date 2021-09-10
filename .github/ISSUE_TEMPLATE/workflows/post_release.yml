@@ -1,0 +1,53 @@
+name: POST_RELEASE
+on:
+  push:
+    tags:
+      - 'v[0-9]+.*'
+jobs:
+  post-release:
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node-version: [ 14 ]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set TAG
+      run: echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+    - name: Wait for published
+      run: |
+        i=0
+        pkg="bpmn-js@${{ env.TAG }}"
+        until [ $i -gt 10 ]
+        do
+          echo "Checking for $pkg in npm registry..."
+          info=$(npm info $pkg)
+          if [[ "$info" != "" ]]; then
+            echo "Found."
+            break
+          fi
+          ((i++))
+          sleep 15s
+        done
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+          ${{ runner.OS }}-
+    - name: Check for stable release
+      run: |
+        if [[ ${{ env.TAG }} =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+        then echo "STABLE_RELEASE=true" >> $GITHUB_ENV
+        fi

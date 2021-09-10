@@ -1,0 +1,24 @@
+name: MERGE_MASTER_TO_DEVELOP
+on:
+  push:
+    branches:
+    - "main"
+
+jobs:
+  Merge_master_to_develop:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout develop
+      uses: actions/checkout@v2
+      with:
+        ref: develop
+        fetch-depth: 0
+    - name: Merge main to develop and push
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git merge -m 'Merge main to develop' --no-edit origin/main
+        git push
