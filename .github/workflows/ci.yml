@@ -47,10 +47,7 @@ jobs:
         with:
         token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
         files: ./coverage1.xml,./coverage2.xml # optional
-        flags: unittests # optional
+        flags: test # optional
         name: codecov-umbrella # optional
         fail_ci_if_error: true # optional (default = false)
         verbose: true # optional (default = false)
-    - name: Upload Coverage
-      run: npx codecov
-      if: matrix.os == 'ubuntu-latest'
