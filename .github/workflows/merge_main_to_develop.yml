@@ -1,11 +1,11 @@
-name: MERGE_MASTER_TO_DEVELOP
+name: MERGE_MAIN_TO_DEVELOP
 on:
   push:
     branches:
     - "main"
 
 jobs:
-  Merge_master_to_develop:
+  Merge_main_to_develop:
     runs-on: ubuntu-latest
     permissions:
       contents: write
