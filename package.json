@@ -46,11 +46,13 @@
     },
     "dependencies": {
         "bpmn-js": "^8.7.3",
+        "cipm": "^2.0.1",
         "codecov": "^3.8.3",
         "jest": "^27.1.1",
         "jest-cli": "^27.1.1",
         "jscoverage": "^0.6.0",
         "npm": "^5.10.0",
+        "npmci": "^3.0.26",
         "wiredep": "^4.0.0"
     }
 }
