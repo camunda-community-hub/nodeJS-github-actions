@@ -41,7 +41,7 @@ jobs:
       env:
         TEST_BROWSERS: ChromeHeadless
       run: npm run all
-- name: Codecov
+    - name: Codecov
   uses: codecov/codecov-action@v2
   with:
     token: ${{ secrets.CODECOV_TOKEN }}
