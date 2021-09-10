@@ -9,8 +9,8 @@
         "bundle:watch": "webpack -w",
         "open": "opn ./public/index.html",
         "dev": "npm run bundle:watch",
-        "test": "mocha",
-        "report-coverage": "nyc report --reporter=text-lcov >                coverage.lcov && codecov"
+        "test": "jest",
+        "codecov": "codecov"
     },
     "repository": {
         "type": "git",
@@ -33,16 +33,22 @@
     "devDependencies": {
         "babel-plugin-istanbul": "^6.0.0",
         "codecov": "^3.8.3",
+        "jest-cli": "^27.1.1",
         "npm-run-all": "^4.1.2",
-        "nyc": "^15.1.0",
         "opn-cli": "^3.1.0",
         "raw-loader": "^0.5.1",
         "webpack": "^4.16.3",
         "webpack-cli": "^3.1.0"
     },
+    "jest": {
+        "coverageDirectory": "./coverage/",
+        "collectCoverage": true
+    },
     "dependencies": {
         "bpmn-js": "^8.7.3",
+        "jest": "^27.1.1",
         "jscoverage": "^0.6.0",
-        "mocha": "^9.1.1"
+        "jest-cli": "^27.1.1",
+        "codecov": "^3.8.3"
     }
 }
