@@ -9,7 +9,7 @@
         "bundle:watch": "webpack -w",
         "open": "opn ./public/index.html",
         "dev": "npm run bundle:watch",
-        "test": "jest",
+        "test": "jest --coverage",
         "codecov": "codecov"
     },
     "repository": {
