@@ -4,3 +4,4 @@ tmp/
 .nyc_output
 coverage
 *.lcov
+.npm_shrinkwrap.json
